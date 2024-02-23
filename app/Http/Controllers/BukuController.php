@@ -6,6 +6,7 @@ use App\Models\Buku;
 use App\Models\Kategori;
 use App\Models\Kategoribukurelasi;
 use Illuminate\Http\Request;
+
 class BukuController extends Controller
 {
     public function index()
@@ -17,7 +18,7 @@ class BukuController extends Controller
 
     public function create()
     {
-        
+
         $kategori = Kategori::distinct()->get();
         return view('buku.buku_create', compact('kategori'));
     }
@@ -46,13 +47,38 @@ class BukuController extends Controller
         $buku->kategori()->attach($kategori);
 
         return redirect('/buku')->with('success', 'Buku berhasil ditambahkan!');
-
     }
-    public function destroy($id){
-    $buku = buku::find($id);
-    $buku -> delete();
 
-        return redirect ('/buku');
+    public function hapus($id)
+    {
+        $buku = Buku::find($id);
+        $buku->delete();
+
+        return redirect('/buku');
+    }
+    public function edit($id)
+    {
+        $buku = Buku::findOrFail($id);
+        return view('buku.edit', ['buku'=>$buku]);
+    }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'judul'=>'required',
+            'penulis'=>'required',
+            'penerbit'=>'required',
+            'tahun_terbit'=>'required',
+
+        ]);
+        Buku::find($id)->update([
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'tahun_terbit' => $request->tahun_terbit,
+           
+        ]);
+       
+
+        return redirect('/buku');
     }
 }
-

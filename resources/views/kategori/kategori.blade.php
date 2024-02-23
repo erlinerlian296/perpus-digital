@@ -7,9 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="mb-4">
-                            <a href="{{route('kategori.create')}}" class="btn btn-primary">
-                                + Tambah Data Kategori
-                            </a>
+                            
                         </div>
                     </div>
 
@@ -25,16 +23,14 @@
                             <tbody>
                                 @forelse ($kategori as $k)
                                     <tr>
-                                        <td class="px-4 py-2">{{ $k->nama_kategori }}</td>
-                                        <td class= "px-4 py-2">
-                                            <form action="{{route('kategori.destroy', $k->id)}}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button class = "btn btn-danger" type="submit">
-                                                <i class="fa fa-trash "></i>
-                                            </button>
-                                        </form>
+                                    <td class="px-4 py-2">{{ $k->nama_kategori }}</td>
+                                        <td>
+                                            <a href="{{ route('kategori.edit', $k->id) }}" class="btn btn-primary">
+                                                Edit
+                                            </a>
+                                            <a href="{{ route('kategori.hapus', $k->id) }}" class="btn btn-danger">
+                                                Hapus
+                                            </a>
                                         </td>
                                     </tr>
                                 @empty
@@ -44,6 +40,11 @@
                                 @endforelse
                             </tbody>
                         </table>
+                        <div class="mb-4">
+                            <a href="{{ route('kategori.create') }}" class="btn btn-primary">
+                                + Tambah Data Kategori
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

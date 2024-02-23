@@ -23,10 +23,33 @@ class KategoriController extends Controller
         ]);
         return redirect ('/kategori')->with('success', 'Kategori berhasil ditambahkan!');
     }
-    public function destroy($id){
-    $kategori = kategori::find($id);
-    $kategori -> delete();
+    public function hapus($id)
+    {
+        $kategori = Kategori::find($id);
+        $kategori->delete();
 
-        return redirect ('/kategori');
+        return redirect('/kategori');
     }
+
+    public function edit($id)
+    {
+        $kategori = Kategori::findOrFail($id);
+        return view('kategori.edit_kategori', ['kategori'=>$kategori]);
+    }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nama_kategori'=>'required',
+            
+
+        ]);
+        Kategori::find($id)->update([
+            'nama_kategori' => $request->nama_kategori,
+            
+        ]);
+       
+
+        return redirect('/kategori');
+    }
+    
 }
