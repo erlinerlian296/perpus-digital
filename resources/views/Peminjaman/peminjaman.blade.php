@@ -13,11 +13,13 @@
                             </div>
                         @endif
 
-                        <div class="mb-4 d-flex justify-conten-between">
+                        <div class="mb-4 d-flex justify-content-between">
                             <a href="{{ route('peminjaman.tambah') }}" class="btn btn-primary">
                                 + Tambah Data Peminjaman
+
                                 <a href="{{ route('print') }}" class="btn btn-primary">
                                 <i class="fa fa-download"></i>Ekspor PDF</a>
+
                             </a>
                         </div>
 

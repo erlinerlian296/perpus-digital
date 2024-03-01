@@ -18,6 +18,11 @@
                         <form action="{{ route('buku.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
 
+                            <div class="mb-3">
+                                <label for="foto" class="form-label">Foto Buku:</label>
+                                <input type="file" name="foto" accept="image/*" class="form-control" required>
+                            </div>
+                            
                             <div class="mb-4">
                                 <label for="judul" class="form-label">Judul:</label>
                                 <input type="text" name="judul" class="form-control" required>
