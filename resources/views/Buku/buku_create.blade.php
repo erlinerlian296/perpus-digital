@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container py-4">
+    <div class="container py-3">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -22,7 +22,7 @@
                                 <label for="foto" class="form-label">Foto Buku:</label>
                                 <input type="file" name="foto" accept="image/*" class="form-control" required>
                             </div>
-                            
+
                             <div class="mb-4">
                                 <label for="judul" class="form-label">Judul:</label>
                                 <input type="text" name="judul" class="form-control" required>
